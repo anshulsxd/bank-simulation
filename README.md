@@ -32,6 +32,13 @@ It is designed to strengthen understanding of **real-life logic**, not just Pyth
 
 ---
 
+## 🔮 Future Improvements
+
+- Use JSON instead of text file
+- Encrypt user passwords
+
+---
+
 ## ▶️ How to Run
 
 1. Make sure **Python 3** is installed 
@@ -41,10 +48,3 @@ It is designed to strengthen understanding of **real-life logic**, not just Pyth
 ```bash
 python main.py
 ```
-
----
-
-## 🔮 Future Improvements
-
-- Use JSON instead of text file
-- Encrypt user passwords
