@@ -8,7 +8,6 @@ It is designed to strengthen understanding of **real-life logic**, not just Pyth
 ---
 
 ## ⚠️ Caution
-
 - Please create a 'data.txt' in the same directory as 'main.py' before running the program.
 
 ---
