@@ -1,6 +1,7 @@
 # GitHub - @AnshulXDev
 
 import time
+import hashlib
 print("-==-Bank simulation-==-")
 while True:
     print("\nChoose an option:")
@@ -17,6 +18,7 @@ while True:
         def create_user():
             username=input("Enter Username: ")
             passw=input("Create Password: ")
+            hashed_pw=hashlib.sha256(passw.encode()).hexdigest()
             balance=input("Enter Starting Balance: ")
 
             with open("data.txt", "r") as f:
@@ -27,7 +29,7 @@ while True:
                         return
             
             with open("data.txt", "a") as f:
-                f.write(username + "," + passw + "," + balance + "\n")
+                f.write(username + "," + hashed_pw + "," + balance + "\n")
 
             print("\nUser Created successfully!")
 
@@ -37,6 +39,7 @@ while True:
         def delete_user():
             input_username=input("Enter Username to delete: ")
             input_pass=input("Enter user's password: ")
+            hashed_pw=hashlib.sha256(input_pass.encode()).hexdigest()
             found=False
             updated_line=[]
 
@@ -44,7 +47,7 @@ while True:
                 for line in f:
                     username, password, balance = line.strip().split(",")
 
-                    if input_username==username and input_pass==password:
+                    if input_username==username and hashed_pw==password:
                         found=True
                         continue
                     updated_line.append(line)
@@ -63,13 +66,14 @@ while True:
         def check_balance():
             input_username=input("Enter Username: ")
             input_pass=input("Enter password: ")
+            hashed_pw=hashlib.sha256(input_pass.encode()).hexdigest()
             found=False
 
             with open("data.txt", "r") as f:
                 for line in f:
                     username, password, balance = line.strip().split(",")
 
-                    if input_username==username and input_pass==password:
+                    if input_username==username and hashed_pw==password:
                         found=True
                         print("\nFeatching Bank Balance...")
                         time.sleep(4)
@@ -84,6 +88,7 @@ while True:
         def update_balance():
             input_username=input("Enter Username: ")
             input_pass=input("Enter password: ")
+            hashed_pw=hashlib.sha256(input_pass.encode()).hexdigest()
             amount=int(input("Enter amount (+/-): "))
 
             found=False
@@ -95,7 +100,7 @@ while True:
 
                     balance=int(balance)
 
-                    if input_username==username and input_pass==password:
+                    if input_username==username and hashed_pw==password:
                         balance += amount
                         found=True
 
@@ -115,6 +120,7 @@ while True:
         def change_userORpassw():
             input_username=input("Enter Username: ")
             input_pass=input("Enter password: ")
+            hashed_pw=hashlib.sha256(input_pass.encode()).hexdigest() # current pw as hash
 
             found=False
 
@@ -122,9 +128,9 @@ while True:
                 lines = f.readlines()
 
             for i, line in enumerate(lines):
-                username, password, balance = line.strip().split(",")
+                username, password, balance = line.strip().split(",") # pw's save as 'password' var 
 
-                if input_username==username and input_pass==password:
+                if input_username==username and hashed_pw==password:
                     found=True
                     print("What you want to change?")
                     print("\n1. Username")
@@ -136,7 +142,8 @@ while True:
                         print("Username changed successfully!")
                     elif ch==2:
                         new_pass=input("Enter new password: ")
-                        lines[i] = f"{username},{new_pass},{balance}\n"
+                        new_hashed_pw=hashlib.sha256(new_pass.encode()).hexdigest() # new pass as hash
+                        lines[i] = f"{username},{new_hashed_pw},{balance}\n"
                         print("Password changed successfully!")
                     else:
                         print("Invalid choice!")
