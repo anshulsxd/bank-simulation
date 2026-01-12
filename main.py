@@ -120,7 +120,7 @@ while True:
         def change_userORpassw():
             input_username=input("Enter Username: ")
             input_pass=input("Enter password: ")
-            hashed_pw=hashlib.sha256(input_pass.encode()).hexdigest() # current pw as hash
+            hashed_pw=hashlib.sha256(input_pass.encode()).hexdigest()
 
             found=False
 
@@ -128,7 +128,7 @@ while True:
                 lines = f.readlines()
 
             for i, line in enumerate(lines):
-                username, password, balance = line.strip().split(",") # pw's save as 'password' var 
+                username, password, balance = line.strip().split(",")
 
                 if input_username==username and hashed_pw==password:
                     found=True
@@ -142,7 +142,7 @@ while True:
                         print("Username changed successfully!")
                     elif ch==2:
                         new_pass=input("Enter new password: ")
-                        new_hashed_pw=hashlib.sha256(new_pass.encode()).hexdigest() # new pass as hash
+                        new_hashed_pw=hashlib.sha256(new_pass.encode()).hexdigest()
                         lines[i] = f"{username},{new_hashed_pw},{balance}\n"
                         print("Password changed successfully!")
                     else:
@@ -164,4 +164,5 @@ while True:
         break
 
     else:
+
         print("Invalid option...")
