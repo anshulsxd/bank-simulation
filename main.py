@@ -1,4 +1,4 @@
-# GitHub - @AnshulXDev
+# GitHub - @codedrust
 
 import time
 print("-==-Bank simulation-==-")
