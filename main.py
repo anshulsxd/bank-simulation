@@ -1,5 +1,3 @@
-# GitHub - @codedrust
-
 import time
 print("-==-Bank simulation-==-")
 while True:
