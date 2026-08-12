@@ -1,5 +1,3 @@
-# GitHub - @AnshulXDev
-
 import time
 import hashlib
 print("-==-Bank simulation-==-")
